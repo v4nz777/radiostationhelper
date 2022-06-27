@@ -1,0 +1,47 @@
+{% load humanize %}
+
+<div class="collapse mt-4" id="collapsePositions">
+
+    <div class="card card-body" id="positionsList">
+
+        <ul class="list-group list-group-flush">
+            
+            <li class="list-group-item text-start">
+                
+            </li>
+            
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col" class="text-start">Position Title</th>
+                    <th scope="col">Level 1</th>
+                    <th scope="col">Level 2</th>
+                    <th scope="col">Level 3</th>
+                    <th scope="col">Level 4</th>
+                    <th scope="col">Level 5</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                {% for position in positions %}
+                    {% if not position.salary_1 %}
+                    <tr class="table-danger">
+                    {% else %}
+                    <tr>
+                    {% endif %}
+                    
+                        <th scope="row" class="text-start" id="titleForPosition-{{position.pk}}"><a class="position-relative text-decoration-none text-secondary" onclick=editPosition("{{position.pk}}")>{{position.title.title}}</a></th>
+                        <td id="salary1TableFor-{{position.pk}}">{{position.salary_1}}</td>
+                        <td id="salary2TableFor-{{position.pk}}">{{position.salary_2}}</td>
+                        <td id="salary3TableFor-{{position.pk}}">{{position.salary_3}}</td>
+                        <td id="salary4TableFor-{{position.pk}}">{{position.salary_4}}</td>
+                        <td id="salary5TableFor-{{position.pk}}">{{position.salary_5}}</td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            
+          </ul>
+    </div>
+  </div>

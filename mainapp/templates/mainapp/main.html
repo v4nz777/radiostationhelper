@@ -1,0 +1,78 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href={% static 'mainapp/bootstrap5.1.3/css/bootstrap.css' %}>
+    <link rel="stylesheet" type="text/css"href={% static 'mainapp/style.css' %}>
+    <script src={% static 'mainapp/bootstrap5.1.3/js/bootstrap.bundle.js' %}></script>
+    <script src={% static 'mainapp/script.js' %}></script>
+    <script src={% static 'transmitter_log/transmitterlog.js' %}></script>
+    <script src={% static 'office/office.js' %}></script>
+    {% block solo_script %}
+    {% endblock solo_script %}
+    
+    <!--VARIABLES-->  
+    <script>
+        const logStatusBTN = `{% include 'mainapp/svg/clock-fill.svg' %}`
+        const caretRight = `{% include 'mainapp/svg/caret-right.svg' %}`
+        const caretDown = `{% include 'mainapp/svg/caret-down.svg' %}`
+        const sheildFill = `{% include 'mainapp/svg/shield-lock-fill.svg' %}`
+        const sheild = `{% include 'mainapp/svg/shield-lock.svg' %}`
+        const caretLeftFill = `{% include 'mainapp/svg/caret-left-fill.svg' %}`
+        const caretRightFill = `{% include 'mainapp/svg/caret-right-fill.svg' %}`
+        const checkLarge = `{% include 'mainapp/svg/check-lg.svg' %}`
+        const eyez = `{% include 'mainapp/svg/eye-fill.svg' %}`
+        const eyeSlash = `{% include 'mainapp/svg/eye-slash-fill.svg' %}`
+        const piggyBank = `{% include 'mainapp/svg/piggy-bank.svg' %}`
+        const piggyBankFill = `{% include 'mainapp/svg/piggy-bank-fill.svg' %}`
+        const isAdmin = true
+        const userName = `{{user}}`;
+
+    </script>
+    <!--//-->
+    
+
+    <title>Main App</title>
+</head>
+<body>
+   
+      
+
+    {% if user.is_authenticated %}
+    <div id="globalMessenger">
+    </div>
+        
+    
+    <!--USER TAB-->
+
+        <!--CLOCK IN?-->
+        {% if not logged %}
+            {% include 'mainapp/clock_in.html' %}
+        {% endif %}
+        
+
+        <!--MAIN BODY-->
+        {% block body %}
+        {% endblock body %}
+
+    <!--USER TAB END-->
+        
+        
+
+    {% else %}
+    <!--IF NOT AUTHENTICATED-->
+    
+        {% block register %}
+        {% endblock register %}
+
+        {% block login %}
+        {% endblock login %}
+    {% endif %}
+  
+</body>
+</html>

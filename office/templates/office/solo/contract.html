@@ -1,0 +1,190 @@
+{% extends 'mainapp/main.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block solo_script %}
+    <script src={% static 'office/contract.js' %}></script>
+{% endblock solo_script %}
+
+{% block body %}
+<a type="button" class="contract-floating-btn" onclick=toggleContractInvoiceList('{{contract_object.code}}') id="floatingBTNContract">
+    {% include 'mainapp/svg/invoice-history.svg' %}
+</a>
+
+{% if unpaid_invoice %}
+    <span id="floatingBtnNotifForContract-{{contract_object.code}}" class="badge rounded-pill bg-danger contract-floating-btn-badge">
+        {{unpaid_invoice}}
+    </span>
+{% endif %}
+
+{% include 'office/solo/invoiceslist_modal.html' %}
+<div id="contractContainer" class="container">
+    <div class="py-5 text-center">
+        {% comment %} <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> {% endcomment %}
+        <h2><strong>Radio Broadcast Digital Contract</strong></h2>
+        <p class="lead">DXIQ Love Radio 106.3 -- Malaybalay Bukidnon</p>
+    </div>
+
+
+    <div class="row g-5">
+        <div class="col-md-5 col-lg-4 order-md-last" >
+            <ul class="list-group mb-3 shadow-lg">
+              <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                  <h6 class="my-0">Date</h6>
+                  <small class="text-muted">Added</small>
+                </div>
+                <strong class="text-success">{{contract_object.added}}</strong>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                  <h6 class="my-0">Product</h6>
+                  <small class="text-muted">Name of Material</small>
+                </div>
+                <strong class="text-success">{{contract_object.title}}</strong>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                  <h6 class="my-0">Contract Number</h6>
+                  <small class="text-muted">todo</small>
+                </div>
+                <strong class="text-success">{{contract_object.code}}</strong>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                  <h6 class="my-0">B.O. Number</h6>
+                  <small class="text-muted">...</small>
+                </div>
+                <strong class="text-success">{{contract_object.bo_number}}</strong>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                  <h6 class="my-0">Category</h6>
+                  <small class="text-muted">Type of product...</small>
+                </div>
+                <strong class="text-success">{{contract_object.category}}</strong>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                  <h6 class="my-0">Account Executive</h6>
+                  <small class="text-muted">...</small>
+                </div>
+                {% if contract_object.account_executive%}
+                <strong class="text-success">{{contract_object.account_executive.first_name|title}} {{contract_object.account_executive.last_name|title}}</strong>
+                {% else %}
+                <strong class="text-success">OS</strong>
+                {% endif %}
+            </li>
+            </ul>
+         </div>
+
+
+        <div class="col-md-7 col-lg-8">
+            
+            <div class="card shadow-lg px-3 py-3">
+                <div class="row">
+                    <div class="col">
+                        <img src={% static 'office/media/product-placeholder.jpg' %} class="card-img-top"  style="width: 18rem;border: 5px solid #000000;" alt="image placeholder">
+                  
+                        <div class="card-body">
+                            <h5 class="card-title">{{contract_object.customer.company|title}}</h5>
+                            <p class="card-text">{{contract_object.customer_address}}</p>
+                            <a class="btn btn-success" data-bs-target="#invoiceForContract-{{contract_object.code}}-Modal" data-bs-toggle="modal" data-bs-dismiss="modal" href="#">
+                                Create Invoice
+                            </a>
+                            {% include 'office/new_invoice.html' %}
+                        </div>
+                    </div>
+                    <div class="col">
+                        {% with 'contracts/qr/'|add:contract_object.code|add:'.png' as qr_img %}
+                            <img src={% static qr_img %} class="card-img-top" style="width: 18rem; border: 5px solid #000000;" alt="qr image">
+                        {% endwith %}
+                        <div class="card-body">
+                            todo
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>  
+
+
+    <div class="row mt-5">
+        <table class="table table-light shadow-lg">
+            <thead>
+              <tr class="text-center">
+                <th scope="col">Number of Spots/Day</th>
+                <th scope="col">Duration of Material</th>
+                <th scope="col">Number of Taglines/Day</th>
+                <th scope="col">Broadcast Start</th>
+                <th scope="col">Broadcast End</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="text-success fw-bold text-center">
+                <td>{{contract_object.spots_per_day}} spots</td>
+                <td>{{contract_object.material_duration}} sec</td>
+                <td>{{contract_object.sponsorship_taglines}} spots</td>
+                <td>{{contract_object.broadcast_start}}</td>
+                <td>{{contract_object.broadcast_end}}</td>
+              </tr>
+            </tbody>
+        </table>
+    </div> 
+
+    <div class="row my-5">
+        <div class="col text-center">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{% include 'mainapp/svg/clock-history.svg' %} Airing Time Schedule</h5>
+                </div>
+                <div class="card-body" style="min-height: 110.39px;">
+                    {% if not specific_time_schedule %}
+                        No specific time Schedule
+                    {% else %}
+                        {% for sched in specific_time_schedule %}
+                            <span class="badge bg-success">{{sched}}</span>
+                        {% endfor %}
+                    {% endif %}
+                                   
+                </div>
+
+            </div>
+        </div>
+        <!---->
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h5>{% include 'mainapp/svg/receipt-cutoff.svg' %} Billing Rates</h5>
+                </div>
+                <div class="card-body">
+                    <h2 class="text-success" style="display:inline">₱ {{contract_object.amount|floatformat:"2"|intcomma}}</h2> &nbsp;<span style="display:inline" class="align-text-top badge bg-secondary"><small class="bg-secondary">per month(VAT Incusive)</small></span>
+                    <p class="text-muted fst-italic"><small>Package Cost(₱{{contract_object.amount|floatformat:"2"|intcomma}}) + Production Fee(₱0.00)</small></p>
+                </div>
+            </div>
+        </div>  
+    </div>
+    
+    <div class="row my-5">
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">
+                    
+                    <h5>Remarks</h5> 
+                </div>
+                <div class="card-body">
+
+                    {% if contract_object.remarks %}
+                       <p class="text-success">"{{contract_object.remarks}}"</p>
+                    {% else %}
+                        <p class="text-muted">No Additional Remarks!</p>  
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock body %}

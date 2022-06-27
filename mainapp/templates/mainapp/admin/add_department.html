@@ -1,0 +1,38 @@
+
+  <div class="modal fade" id="addDeptModal" tabindex="-1" aria-labelledby="addDeptModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addDeptModalLabel">CREATE NEW DEPARTMENT</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <!-- BODY START -->
+            <form action={% url 'add_dept' %} method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="deptTitle" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="deptTitle" placeholder="" name="dept_title" required>  
+                   
+                    <div class="form-floating mt-4">
+                        <textarea  name="dept_description" class="form-control" placeholder="Leave a comment here" id="deptDesc" style="height: 100px"></textarea>
+                        <label for="deptDesc">Describe</label>
+                      </div>
+                    
+                </div>
+            <!--form close tag extended below--> 
+            <!-- BODY END -->
+            </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Add Department</button>
+                </div>
+            </form>
+ 
+               
+        </div>  
+    </div>
+</div>
+
+  
+

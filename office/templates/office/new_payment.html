@@ -1,0 +1,56 @@
+
+  
+<!-- Modal -->
+  <div class="modal fade" id="addNewPaymentModal" tabindex="-1">
+  
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="background: #3100801a !important;">
+
+            <div class="card shadow px-3 py-3 mb-5 rounded-pill">
+                <strong><h5 class="fw-bolder my-0">INPUT NEW PAMENT</h5></strong>
+            </div>
+
+            <div class="card shadow px-3 py-3 mb-5">
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">Payment For</span>
+                    <input list="datalistPaymentInvoiceNo" id="dataPaymentInvoiceNo" class="form-control"  placeholder="Invoice number...">
+                    <datalist id="datalistPaymentInvoiceNo">
+                        {% for invoice in invoices %}
+                            {% if not invoice.paid %}
+                            <option value='{{invoice.invoice_no}}'>{{invoice.advertiser.company.title}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </datalist>
+                    
+                </div>
+                <div class="input-group mb-3 text-secondary">
+                    <div id="dataPaymentPayor"  class="input-group"></div>
+                    <div id="dataPaymentAmount" class="input-group"></div>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">OR Number</span>
+                    <input type="text"  id="dataPaymentORNum" class="form-control" placeholder="OR Number...">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">OR Date</span>
+                    <input type="date"  id="dataPaymentORDate" class="form-control">
+                </div>
+            </div>
+            <div id="paymentAlert">
+                
+            </div>                    
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary disabled" id="submitNewPayment" onclick=inputPayment()>Submit</button>
+        </div>
+      </div>
+    </div>
+
+</div>

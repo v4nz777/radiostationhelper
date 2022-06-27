@@ -1,0 +1,64 @@
+{% extends 'mainapp/main_card.html' %}
+{% load static %}
+
+
+
+
+<!--HEADER-->
+{% block active_profiletab %}
+active
+{% endblock active_profiletab %}
+
+
+<!--BODY-->
+{% block card_body %}
+
+    <div class="mx-auto card-avatar">
+        <img src={% static 'mainapp/media/avatar.png' %} class="avatar-img">
+        <a id="logStatus" class="btn btn-success avatar-badge badge rounded-pill" href="{% url 'logout' %}">{% include 'mainapp/svg/clock-fill.svg' %}</a>
+      
+           
+       
+    </div>
+    
+
+  <h5 class="card-title" id="profileName"></h5>
+  <p class="card-text" id="profilePosition"></p>
+  <hr>
+
+  <!--B-->
+    <div class="container d-flex justify-content-around">
+
+        <div class="card shadow-lg" style="width: 25rem;">
+            <div class="card-header fw-bold">
+            Contact &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <!--EDIT PROFILE BTN-->
+            <a href="" type="button" class="" data-bs-toggle="modal" data-bs-target="#exampleModal">{% include 'mainapp/svg/pen-fill.svg' %}</a>
+            <!--EDIT PROFILE MODAL--> 
+            {% include 'mainapp/modals/edit_profile.html' %}
+          </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item text-start"><span>{% include 'mainapp/svg/fingerprint.svg' %}</span>&nbsp;&nbsp;<span class='fst-italic' id="profileUserName">{{user}}</span></li>
+                <li class="list-group-item text-start" id="liProfileEmail"><span>{% include 'mainapp/svg/envelope-fill.svg' %}</span>&nbsp;&nbsp;<span class='fst-italic' id="profileEmail"></span></li>
+                <li class="list-group-item text-start" id="liProfileMobile"><span>{% include 'mainapp/svg/phone-fill.svg' %}</span>&nbsp;&nbsp;<span class='fst-italic' id="profileMobile"></span></li>
+                <li class="list-group-item text-start" id="liProfileTele"><span>{% include 'mainapp/svg/telephone-fill.svg' %}</span>&nbsp;&nbsp;<span class='fst-italic' id="profileTele"></span></li>
+                <li class="list-group-item text-start" id="liProfileFacebook"><span>{% include 'mainapp/svg/facebook.svg' %}</span>&nbsp;&nbsp;<span class='fst-italic' id="profileFacebook"></span></li>
+                <li class="list-group-item text-start" id="liProfileAdd"><span>{% include 'mainapp/svg/house-fill.svg' %}</span>&nbsp;&nbsp;<span class='fst-italic' id="profileAdd"></span></li>
+            </ul>
+        </div>
+
+        <div class="card shadow-lg" style="width: 25rem;">
+            <div class="card-header fw-bold">
+            USER QR CODE
+            </div>
+            <div class="card-body">
+                TODO QR
+            </div>
+            
+        </div>
+
+    </div>
+{% endblock card_body %}
+    
+
+  

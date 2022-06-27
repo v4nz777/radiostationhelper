@@ -1,0 +1,46 @@
+<div class="card solo-modal shadow-lg" id="openInvoiceListFor-{{contract_object.code}}">
+    <div class="card-header" style="background-color: #198754; color: white">
+        Invoices
+    </div>
+    <div class="card-body overflow-y-scroll" style="background-color: #d1e7dd;">
+        <ul class="list-group list-group-flush">
+            {% if invoices %}
+                {% for inv in invoices %}
+                <li class="list-group-item" style="background-color: #d1e7dd;">
+                    <div class="row" style="background-color: #d1e7dd;">
+                        <div class="col-11">
+                            {% if inv.paid %}
+                                
+                                <h6 style="margin-bottom: -5px;">
+                                    {% include 'mainapp/svg/receipt.svg' %}
+                                    {{inv.invoice_no}}@{{inv.invoice_date|date:"M/d/y"}}
+                                </h6>
+                                <small class="text-muted">OR: <span class="fst-italic">{{inv.or_number}}@{{inv.or_date|date:"m/d/y"}}</span></small>
+                            {% else %}
+                                <h6>
+                                    {% include 'mainapp/svg/receipt.svg' %}
+                                    <strong>{{inv.invoice_no}}@{{inv.invoice_date|date:"M/d/y"}}</strong>
+                                </h6>
+                            {% endif %}
+                        </div>
+                        <div class="col-1">
+                            {% if inv.paid %}
+                                <span class="emoji-paid">{% include 'mainapp/svg/emoji-smile-fill.svg' %}</span>
+                            {% else %}
+                                <span class="emoji-unpaid">{% include 'mainapp/svg/emoji-frown-fill.svg' %}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                </li>
+                {% endfor %}
+            {% else %}
+                No Invoice Yet...
+            {% endif %}
+            
+      
+        </ul>
+
+    </div>
+    
+</div>

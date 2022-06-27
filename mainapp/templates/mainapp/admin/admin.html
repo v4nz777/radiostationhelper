@@ -1,0 +1,21 @@
+<!-- Button trigger CREATE NEW DEPARTMENT -->
+<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addDeptModal">
+    CREATE NEW DEPARTMENT
+</button> 
+<!--CREATE NEW DEPARTMENT-->
+{% include 'mainapp/admin/add_department.html' %}
+<hr>
+<!-- Button trigger APPOINT POSITION TO PEOPLE -->
+<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#appointPeopleModal">
+APPOINT POSITION TO PEOPLE
+</button> 
+<!--APPOINT POSITION TO PEOPLE-->
+{% include 'mainapp/admin/appoint_people.html' %}
+<hr>
+<!-- ASSIGN PEOLPLE TO DEPARTMENT -->
+<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#assignPeopleModal">
+    ASSIGN PEOLPLE TO DEPARTMENT
+</button> 
+<!--ASSIGN PEOLPLE TO DEPARTMENT-->
+{% include 'mainapp/admin/assign_people.html' %}
+<hr>

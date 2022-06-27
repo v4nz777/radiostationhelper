@@ -1,0 +1,44 @@
+{% extends 'mainapp/main.html' %}
+{% load static %}
+
+
+{% block login %}
+    <div class="container">
+        <div class="row justify-content-around custom-padding-top">
+            <div class="col-4 logo-card">     
+                <img id="stationLogo" src={% static 'mainapp/media/logo.png' %}>
+                <hr>
+                <h3><strong>DXAT 104.1 VALENCIA</strong></h3> 
+                <span>2nd Floor Modestar Building, P-2 Lumbo, Valencia City Bukidnon</span>    
+            </div>
+
+            <div class="col-4 card card-shadow">
+                <form action={% url 'login' %} method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="logName" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="logName" name="username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="logPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="logPassword" name="password">
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-ytb btn-lg form-control">Log In</button>
+                    </div>
+                </form>
+                <hr>
+                <div class="mb-3">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-secondary btn-lg form-control" data-bs-toggle="modal" data-bs-target="#registerModal">
+                    CREATE ACCOUNT
+                    </button>                           
+                </div>
+            </div>
+        </div> 
+        <!-- Modal Register -->
+        {% include 'mainapp/register.html' %} 
+    </div>
+
+
+{% endblock login %}

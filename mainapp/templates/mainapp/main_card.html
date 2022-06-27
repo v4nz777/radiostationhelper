@@ -1,0 +1,34 @@
+{% extends 'mainapp/main.html' %}
+
+{% block body %}
+  <div class="card text-center container-xl mt-5 shadow-lg">
+
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a class="nav-link fw-bolder link-secondary {% block active_profiletab %}{% endblock active_profiletab %}" href={% url 'main' %}>Profile</a>
+        </li>
+        {% if request.user.position %}
+        <li class="nav-item">
+          <a class="nav-link fw-bolder link-secondary {% block active_worktab %}{% endblock active_worktab %}" href={% url 'worktab' %}>{{user.position.title.title}}'s Tab</a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link fw-bolder link-secondary {% block active_overview %}{% endblock active_overview %}" href={% url 'overview' %}>Overview</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-bolder link-secondary disabled {% block active_dept %}{% endblock active_dept %}" href='#'>
+            {% include 'mainapp/svg/building.svg' %} {% block department_title %}{% endblock department_title %}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card-body">
+      {% block card_body %}
+      {% endblock card_body %}
+    </div>
+    
+    
+  </div>
+{% endblock body %}

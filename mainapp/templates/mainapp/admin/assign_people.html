@@ -1,0 +1,70 @@
+
+  <div class="modal fade" id="assignPeopleModal" tabindex="-1" aria-labelledby="assignPeopleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="assignPeopleModalLabel">Assign People</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <!-- BODY START -->
+            <form action={% url 'designate' %} method="post">
+                {% csrf_token %}
+                <div class="row g-2 m-3">
+                  <div class="col-md">
+                    <div class="form-floating">
+                      <select class="form-select" id="assignPerson" aria-label="Floating label select example" name="worker">
+                        <option selected>Select Person</option>
+                        {% for worker in workers %}
+                        <option value={{worker}}>{{worker.first_name.title}} {{worker.last_name.title}}</option>
+                        {% endfor %}
+                      </select>
+                      <label for="assignPerson">Name of Person</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row g-2 m-3">
+                  <div class="col-md">
+                    <div class="form-floating">
+                      <select class="form-select" id="assignTo" aria-label="Floating label select example" name="department">
+                        <option selected>Select Department</option>
+                        {% for department in departments %}
+                          
+                        <option type="text" value='{{department.title}}'>{{department.title.title}}</option>
+                          
+                        {% endfor %}
+
+                      </select>
+                      <label for="assignTo">Department</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row g-2 m3">
+                  <div class="col-md">
+                    <div class="form-floating">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="in_charge" id="setInCharge">
+                        <label class="form-check-label" for="setInCharge">
+                          Make This Person In-Charge
+                        </label>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+            <!--form close tag extended below--> 
+            <!-- BODY END -->
+            </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Assign This Person</button>
+                </div>
+            </form>
+ 
+               
+        </div>  
+    </div>
+</div>
+
+  
+

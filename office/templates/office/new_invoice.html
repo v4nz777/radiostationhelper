@@ -1,0 +1,54 @@
+<div class="modal fade" id="invoiceForContract-{{contract_object.code}}-Modal" aria-hidden="true" aria-labelledby="invoiceForContract-{{contract_object.code}}-Modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Create New Invoice</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            <div class="card shadow px-3 py-3 mb-5">
+
+            <!--fieldset disabled>
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">Contract</span>
+                    
+                        <select id="adsContractforInvoice-{{contract_object.code}}" class="form-select">
+                        <option>{{contract_object.code}}</option>
+                        </select>
+                </div>
+            </fieldset-->
+                <span class="fw-bold">Contract:</span><span class="fst-italic fw-normal text-success"><small id="dataNewInvoiceContract-{{contract_object.code}}">{{contract_object.code}}</small></span>
+
+                
+
+
+                <div class="input-group my-3">
+                    <span class="input-group-text fw-bold">Invoice No.</span>
+                    <input list="datalistNewInvoice-{{contract_object.code}}" id="dataNewInvoice-{{contract_object.code}}" class="form-control" placeholder="Type invoice no. from the paper..." required>
+                    <datalist id="datalistNewInvoice-{{contract_object.code}}">
+                        {% for invoice in invoices %}
+                            <option value='{{invoice.invoice_no}}'>
+                        {% endfor %}
+                    </datalist>
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-text fw-bold">From:</span> 
+                    <input id="dataInvoiceFrom-{{contract_object.code}}" type="date" class="form-control">
+                    <span class="input-group-text fw-bold">To:</span>
+                    <input id="dataInvoiceTo-{{contract_object.code}}" type="date" class="form-control">
+                </div>
+                
+            </div>
+
+
+
+        </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <button class="btn btn-secondary" data-bs-target="#ad-{{contract_object.code}}-Modal" data-bs-toggle="modal" data-bs-dismiss="modal">{% include 'mainapp/svg/caret-left.svg' %} Back</button>
+                <button id="submitInvoice-{{contract_object.code}}" class="btn btn-success" onclick=newInvoice('{{contract_object.code}}')>Submit</button>
+            </div>
+      </div>
+    </div>
+  </div>

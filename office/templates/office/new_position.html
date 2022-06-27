@@ -1,0 +1,67 @@
+
+  
+<!-- Modal -->
+  <div class="modal fade" id="addPositionModal" tabindex="-1">
+  
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="background: #3100801a !important;">
+
+            <div class="card shadow px-3 py-3 mb-5 rounded-pill">
+                <strong><h5 class="fw-bolder my-0">NEW POSITION</h5></strong>
+            </div>
+
+            <div class="card shadow px-3 py-3 mb-5">
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">Postition Title</span>
+                    <input type="text"  id="dataPositionTitle" class="form-control">
+                </div>
+            </div>
+
+            <div class="card shadow px-3 pt-3 pb-1 mb-5">
+                <span class="fw-bold mb-3">Set Salary</span>
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">Level 1</span>
+                    <span class="input-group-text fw-bold">₱</span>
+                    <input type="text"  id="dataSalary1" class="form-control" placeholder="amount per month...">
+                    <span class="input-group-text fw-bold">₱/month</span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">Level 2</span>
+                    <span class="input-group-text fw-bold">₱</span>
+                    <input type="text"  id="dataSalary2" class="form-control" placeholder="amount per month...">
+                    <span class="input-group-text fw-bold">₱/month</span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">Level 3</span>
+                    <span class="input-group-text fw-bold">₱</span>
+                    <input type="text"  id="dataSalary3" class="form-control" placeholder="amount per month...">
+                    <span class="input-group-text fw-bold">₱/month</span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">Level 4</span>
+                    <span class="input-group-text fw-bold">₱</span>
+                    <input type="text"  id="dataSalary4" class="form-control" placeholder="amount per month...">
+                    <span class="input-group-text fw-bold">₱/month</span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">Level 5</span>
+                    <span class="input-group-text fw-bold">₱</span>
+                    <input type="text"  id="dataSalary5" class="form-control" placeholder="amount per month...">
+                    <span class="input-group-text fw-bold">₱/month</span>
+                </div>
+            </div>
+                    
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" id="submitPosition" onclick=newPosition()>Submit</button>
+        </div>
+      </div>
+    </div>
+
+</div>

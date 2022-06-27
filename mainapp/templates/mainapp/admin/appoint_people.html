@@ -1,0 +1,55 @@
+
+  <div class="modal fade" id="appointPeopleModal" tabindex="-1" aria-labelledby="appointPeopleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="appointPeopleModalLabel">Appoint People</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <!-- BODY START -->
+            <form action={% url 'appoint_to_position' %} method="post">
+                {% csrf_token %}
+                <div class="row g-2 m-3">
+                  <div class="col-md">
+                    <div class="form-floating">
+                      <select class="form-select" id="assignPerson" aria-label="Floating label select example">
+                        <option selected>Select Person</option>
+                        {% for worker in workers %}
+                        <option value={{worker}}>{{worker.first_name.title}} {{worker.last_name.title}}</option>
+                        {% endfor %}
+                      </select>
+                      <label for="assignPerson">Name of Person</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row g-2 m-3">
+                  <div class="col-md">
+                    <div class="form-floating">
+                      <select class="form-select" id="assignTo" aria-label="Floating label select example">
+                        <option selected>Position</option>
+                        {% for position in positions %}
+                        <option value={{position}}>{{position}}</option>
+                        {% endfor %}
+
+                      </select>
+                      <label for="appointTo">Position</label>
+                    </div>
+                  </div>
+                </div>
+            <!--form close tag extended below--> 
+            <!-- BODY END -->
+            </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Appoint</button>
+                </div>
+            </form>
+ 
+               
+        </div>  
+    </div>
+</div>
+
+  
+

@@ -1,0 +1,105 @@
+
+  
+  <!-- Modal -->
+<div class="modal fade" id="transmitterLogModal" tabindex="-1">
+  
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Transmitter Log</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="background: #0080001a !important;">
+
+          <div class="card shadow px-3 py-3 mb-5">
+            <h5 class="fw-bolder">MAIN POWER SUPPLY</h5>
+            <div class="input-group mb-3">
+                <span class="input-group-text fw-bold">Voltage</span>
+                <input type="number"  id="dataVoltage" class="form-control" placeholder="ex: 220" required>
+                <span class="input-group-text fst-italic">volts</span>
+            </div>
+          </div>
+
+          
+            
+
+          <div class="card shadow px-3 py-3 mb-5">
+            <h5 class="fw-bolder">EXCITER</h5>
+            <div class="input-group mb-3">
+                <span class="input-group-text fw-bold" >Exciter</span>
+                <input type="number" id="dataExciter" class="form-control transmiter-log-input" placeholder="...">
+                <span class="input-group-text fst-italic" >watts</span>
+            </div>
+            
+          </div>
+
+          <div class="card shadow px-3 py-3 mb-5">
+            <h5 class="fw-bolder">DRIVER</h5>
+            <div class="input-group mb-3">
+                <span class="input-group-text fw-bold" >Driver IPA</span>
+                <input type="number" id="dataDriverIPA" class="form-control transmiter-log-input" placeholder="...">
+                <span class="input-group-text fst-italic" >amps</span>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text fw-bold" >Driver Forward Power</span>
+                <input type="number" id="dataDriverFWD" class="form-control transmiter-log-input" placeholder="ex: 50">
+                <span class="input-group-text fst-italic" >watts</span>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text fw-bold" >Driver Reflected Power</span>
+                <input type="number" id="dataDriverRFL" class="form-control transmiter-log-input" placeholder="...">
+                <span class="input-group-text fst-italic" >watts</span>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text fw-bold" >VPA</span>
+                <input type="number" id="dataVPA" class="form-control transmiter-log-input" placeholder="...">
+                <span class="input-group-text fst-italic" >volts</span>
+            </div>
+          </div>
+            
+
+          <div class="card shadow px-3 py-3 mb-5">
+            <h5 class="fw-bolder">FINAL</h5>
+            <div class="input-group mb-3">
+                <span class="input-group-text fw-bold" >Final IPA</span>
+                <input type="number" id="dataFinalIPA" class="form-control transmiter-log-input" placeholder="...">
+                <span class="input-group-text fst-italic" >amps</span>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text fw-bold" >Final Forward Power</span>
+                <input type="number" id="dataFinalFWD" class="form-control transmiter-log-input" placeholder="ex: 1000">
+                <span class="input-group-text fst-italic" >watts</span>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text fw-bold" >Final Reflected Power</span>
+                <input type="number" id="dataFinalRFL" class="form-control transmiter-log-input" placeholder="...">
+                <span class="input-group-text fst-italic" >volts</span>
+            </div>
+
+              <div class="col-12 text-start">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="dataPopulatePrevious">
+                  <label class="form-check-label fw-bold" for="dataPopulatePrevious">
+                    Populate Previous Hour/s
+                  </label>
+                </div>
+              </div>
+          </div>
+
+          <h5 class="fw-bolder">REMARKS</h5>
+            <div class="input-group">
+                <textarea class="form-control fst-italic" id="dataRemarks" aria-label="With textarea"></textarea>
+            </div>
+                      
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" id="submitTransmitterLog" onclick=submitTransmitterLog()>
+            Submit
+          </button>
+          
+        </div>
+      </div>
+    </div>
+
+</div>

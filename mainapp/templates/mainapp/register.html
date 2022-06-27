@@ -1,0 +1,65 @@
+
+  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registerModalLabel">Register Account</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <!-- BODY START -->
+            <form action={% url 'register' %} method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="regName" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="regName" placeholder="" name="username">
+                </div>
+                <div class="mb-3">
+                    <label for="regPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="regPassword" placeholder="" name="password">
+                </div>
+                <div class="mb-3">
+                    <label for="regConfirmation" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="regConfirmation" placeholder="" name="confirmation">
+                </div>
+                <div class="mb-3">
+                    <label for="regFirstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="regFirstName" placeholder="Juan" name="first_name">
+                </div>
+                <div class="mb-3">
+                    <label for="regLastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="regLastName" placeholder="De La Cruz" name="last_name">
+                </div>
+                <div class="mb-3">
+                    <label for="regEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="regEmail" placeholder="name@example.com" name="email">
+                </div>
+                <div class="mb-3">
+                  <label for="regMobile" class="form-label">Mobile Number</label>
+                  <input type="text" class="form-control" id="regMobile" placeholder="0926-123-4567" name="mobile">
+                </div>
+                <div class="mb-3">
+                  <label for="regTelephone" class="form-label">Telephone Number</label>
+                  <input type="text" class="form-control" id="regTelephone" placeholder="088-828-1234" name="telephone">
+                </div>
+                <div class="mb-3">
+                  <label for="regFb" class="form-label">Facebook</label>
+                  <input type="text" class="form-control" id="regFb" placeholder="example: v4nz777" name="facebook">
+                </div>
+                <div class="mb-3">
+                  <label for="regAddress" class="form-label">Address</label>
+                  <input type="text" class="form-control" id="regAddress" placeholder="" name="address">
+                </div>
+                
+            <!--form close tag extended below--> 
+            <!-- BODY END -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+            </form>
+      </div>
+    </div>
+  </div>
+

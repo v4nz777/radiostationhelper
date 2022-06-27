@@ -1,0 +1,156 @@
+{% extends 'mainapp/main_card.html' %}
+{% load static %}
+
+
+
+<!--HEADER-->
+{% block active_dept %}active{% endblock active_dept %}
+{% block department_title %}{{department.title.title}}{% endblock department_title %}
+<!--BODY-->
+{% block card_body %}
+
+
+
+<div class="row">
+        
+    <div class="col-3 pt-3 px-0 card shadow side-collapse" style="height: 100vh">
+        {% if department.users.count >= 1 %}
+            <div class="card-header">
+            {% if department.head %}
+                <div class="row mb-0 px-4">
+                    {% if department.head.is_logged %}
+                        <div class="col-2 avatar-med avatar-online">
+                            <img src={% static 'mainapp/media/avatar-small.png' %} alt="">
+                        </div>
+                    {% else %}
+                        <div class="col-2 avatar-med avatar-offline">
+                            <img src={% static 'mainapp/media/avatar-small.png' %} alt="">
+                        </div>
+                    {% endif %} 
+                    <div class="col text-start avatar-text fw-normal" style='width:25rem'>
+                        <a href="#" type="button" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#profile{{department.head}}Modal">
+                            <p class="fw-bold mb-0" style='color: #383838'>{{department.head.first_name.title}} {{department.head.last_name.title}} </p>
+                        </a>
+                        {% include 'mainapp/modals/view_profile_in_dept_head.html' %}
+                        <p><small class="text-muted">
+                            Officer-In-Charge
+                        </small></p>
+                    </div>
+                </div>
+                {% if request.user.position.title == 'manager' %}
+                    <small><a class="text-decoration-none fw-italic" href="#" data-bs-toggle="modal" data-bs-target="#assignInCharge-{{department}}Modal">change</a></small>
+                    {% include 'mainapp/modals/assign_in_charge.html' %}
+                {% endif %}
+            {% else %}
+                <small><a class="text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#assignInCharge-{{department}}Modal">Assign an In-Charge</a></small>
+                {% include 'mainapp/modals/assign_in_charge.html' %}
+            {% endif %}
+            </div>
+        {% endif %}
+        
+            
+
+            <div class="card-body">
+                <div class="container">
+                {% for person in department.users.all %}
+                    {% if person != department.head %}
+                        <div class="row mb-3"> 
+                            
+                                {% if person.is_logged %}
+                                    <div class="col-2 avatar-med avatar-online">
+                                        <img src={% static 'mainapp/media/avatar-small.png' %} alt="">
+                                    </div>
+                                {% else %}
+                                    <div class="col-2 avatar-med avatar-offline">
+                                        <img src={% static 'mainapp/media/avatar-small.png' %} alt="">
+                                    </div>
+                                {% endif %} 
+                                <div class="col text-start avatar-text fw-normal" style='width:25rem'>
+                                    <a href="#" type="button" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#profile{{person}}Modal">
+                                        <p class="fw-bold mb-0" style='color: #383838'>{{person.first_name.title}} {{person.last_name.title}}</p> 
+                                    </a>
+                                    {% include 'mainapp/modals/view_profile.html' %}
+                                    <p><small class="text-muted">
+                                        Member
+                                    </small></p>
+                                </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                {% if request.user == department.head or request.user.position.title == 'manager' %}
+                    <a class="btn btn-outline-secondary btn-sm rounded-pill fw-bold" href="#" type="button" data-bs-toggle="modal" data-bs-target="#addPeople-{{department}}Modal">{% include 'mainapp/svg/person-plus-fill.svg' %} ADD</a>
+                    {% include 'mainapp/modals/add_people.html' %}
+                {% endif %}
+            </div>
+            </div>
+    <div></div>
+        <div class="side-collapse-btn">
+            
+                <a type='button' onclick='sideCollapse()' id="sideCollapseBTN">
+                    {% include 'mainapp/svg/caret-left-fill.svg' %}
+                </a>
+            
+        </div>
+    </div>
+
+
+    <div class="col card ms-3" style="border: none"><!--main-->   
+        <div class="mb-5 shadow rounded-pill"  style="align-self:center; background-color:white"> 
+            <div class="mx-3 my-3 d-grid d-md-flex gap-2 justify-content-md-end">
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" cols="70" style="border-radius:20px" placeholder="Post Something..."></textarea>
+                <a href="" class="text-secondary">{% include 'mainapp/svg/send-fill-cust.svg' %}</a>
+            </div>
+        </div> 
+    
+        <!--BEGIN POSTS-->
+        <div class="mb-5 shadow rounded"  style="align-self:center; background-color:white"> 
+            <div class="mx-3 mt-3 mb-1 d-grid d-md-flex gap-2 justify-content-md-start">
+                <div class="avatar-med">
+                    <img src={% static 'mainapp/media/avatar-small.png' %} alt="">
+                </div>
+                <div class="text-start">
+                    <strong>Sandy Reyes </strong><small> 11:00 PM Today</small>
+                    <p>@username</p>
+                </div>
+            </div>
+            
+            <div class="mx-5 mb-3 text-start" style="width:500px">
+                please do this
+            </div>
+            <div class="card-footer mb-1 pt-3 row" style="--bs-gutter-x: 0rem; background-color: white">
+                <div class="col">
+                    <button type="button" class="btn btn-outline-secondary position-relative rounded-pill fw-bold">
+                        Noted!
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                            1
+                        </span>
+                      </button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-outline-secondary position-relative rounded-pill fw-bold">
+                        Working On It!
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                            1
+                        </span>
+                      </button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-outline-secondary position-relative rounded-pill fw-bold">
+                        Done!
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                            1
+                        </span>
+                      </button>
+                </div>
+                
+            </div>
+        </div> 
+  
+            
+    </div>
+</div>
+
+
+
+    
+{% endblock card_body %}

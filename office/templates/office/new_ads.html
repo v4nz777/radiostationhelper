@@ -1,0 +1,124 @@
+
+  
+<!-- Modal -->
+  <div class="modal fade" id="addNewAdsModal" tabindex="-1">
+  
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="background: #3100801a !important;">
+
+            <div class="card shadow px-3 py-3 mb-5 rounded-pill">
+                <strong><h5 class="fw-bolder my-0">NEW ADVERTISEMENT</h5></strong>
+            </div>
+
+            <div class="card shadow px-3 py-3 mb-5">
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">Contract #</span>
+                    <input type="text"  id="dataAdCode" class="form-control" placeholder="I.Ms, serial codes, etc..." required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">Advertiser</span>
+                    <input list="datalistAdCompany" id="dataAdCompany" class="form-control" placeholder="type or search Company or Person..." required>
+                    <datalist id="datalistAdCompany">
+                        {% for customer in customers %}
+                            <option value='{{customer.company.title}}'>
+                        {% endfor %}
+                    </datalist>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">Address</span>
+                    <input type="text"  id="dataAdCompanyAddress" class="form-control" placeholder="address..." required>
+                </div>
+            </div>
+
+            <div class="card shadow px-3 pt-3 pb-1 mb-5">
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">Amount</span>
+                    <span class="input-group-text fw-bold">₱</span>
+                    <input type="text"  id="dataAdAmount" class="form-control" placeholder="amount per month..." required>
+                    <span class="input-group-text fw-bold">₱/month</span>
+                </div>
+            </div>
+
+
+            <div class="card shadow px-3 py-3 mb-5">
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">Account Executive</span>
+                    <select id="dataAdAE" class="form-select" placeholder="type or search AE">
+                        <option value=''>Office Sales</option>
+                        {% for person in all_people %}
+                        <option value='{{person}}'>{{person.first_name.title}} {{person.last_name.title}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="card shadow px-3 py-3 mb-5">
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">Start of Broadcast</span>
+                    <input type="date"  id="dataAdBroadcastStart" class="form-control" placeholder="date" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">End of Broadcast</span>
+                    <input type="date"  id="dataAdBroadcastEnd" class="form-control" placeholder="date" required>
+                </div>
+            </div>
+
+            <div class="card shadow px-3 py-3 mb-5">
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">Title</span>
+                    <input type="text"  id="dataAdTitle" class="form-control" placeholder="Name of Ads..." required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">Spots</span>
+                    <input type="number"  id="dataAdSpots" class="form-control" placeholder="...per day" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">Duration of Material</span>
+                    <input type="number"  id="dataAdDuration" class="form-control" placeholder="...seconds" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">Sponsorship Tagline Spots</span>
+                    <input type="number"  id="dataAdTagline" class="form-control" placeholder="...per day" required>
+                </div>
+                        
+            </div>
+            <div class="card shadow px-3 py-3 mb-5">
+
+                <h6 class="fw-bolder mt-3">Time Schedule</h6>
+                <p><small>Optional, Put specific time schedule separated in comma ( , )</small></p>
+                <div class="input-group">
+                    <textarea class="form-control fst-italic" id="dataAdTimeSched" aria-label="With textarea" placeholder="ex. 1:10pm,2:10pm,3:10pm,etc... "></textarea>
+                </div>
+ 
+                <h6 class="fw-bolder mt-3">Remarks</h6>
+                <div class="input-group">
+                    <textarea class="form-control fst-italic" id="dataAdRemarks" aria-label="With textarea" placeholder="optional...any additional instructons"></textarea>
+                </div>      
+            </div>
+            <div class="card shadow px-3 py-3 mb-5">
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold">Tag</span>
+                    <input list="datalistAdCategory" id="dataAdCategory" class="form-control" placeholder="ex. detergent" required>
+                    <datalist id="datalistAdCategory">
+                        {% for category in categories %}
+                            <option value='{{category.title.title}}'>
+                        {% endfor %}
+                    </datalist>
+                </div>
+            </div>
+                      
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" id="submitAdvertisement" onclick=addNewAds()>Submit</button>
+        </div>
+      </div>
+    </div>
+
+</div>

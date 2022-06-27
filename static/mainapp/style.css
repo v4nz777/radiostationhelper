@@ -1,0 +1,181 @@
+body {
+    background-color: #1c1e211f;
+}
+
+.card-shadow {
+    /*align-items: center;*/
+    background-color: #fff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    box-sizing: border-box;
+    padding: 20px 20px 28px;
+    width: 396px;
+}
+
+.btn-ytb {
+    color: #fff;
+    background-color: #3069B3;
+    border-color: #234f88;
+}
+
+.btn-ytb:hover {
+    color: #fff;
+    background-color: #1f5daf;
+    border-color: #234f88;
+}
+
+.custom-padding-top {
+    padding: 90px 0 0 0;
+}
+
+.logo-card {
+    width: 396px;
+}
+#stationLogo {
+    width: 300px;
+}
+
+.card-avatar {
+    width: 128px !important;
+    height: 128px !important;
+    position: relative !important;
+}
+.avatar-img {
+    width: 128px !important;
+    height: 128px !important;
+    position: absolute;
+    left: 0% !important;
+}
+.avatar-badge {
+    position: absolute;
+    left: 70% !important;
+}
+body{
+    position: relative !important;
+}
+
+#clockInCloak {
+    background-color: rgba(0, 0, 0, 0.37);
+    height: 110%;
+    width: 100%;
+    z-index: 1;
+    position: absolute !important;
+    top: -10% !important;
+ 
+    
+
+}
+.clock-in-btn {
+    z-index: 2;
+    position: fixed;
+}
+
+.clock-in-btn-style {
+    color: #198754;
+    border-color: #198754;
+    box-shadow: 0 0 0 0.25rem rgba(49, 25, 135, 0.5);
+}
+
+.clock-in-btn-style:active {
+    color: #198754;
+    border-color: #198754;
+    box-shadow: 0 0 0 0.25rem rgb(25 135 84 / 50%);
+}
+.clock-in-btn-style:hover {
+    color: #fff;
+    background-color: #198754;
+    border-color: #198754;
+    box-shadow: 0 0 0 0.25rem rgb(25 135 84 / 50%);
+}
+.avatar-small {
+    width: 30px;
+    height: 30px;
+    
+    
+    border-radius: 50%;
+    position: relative;
+}
+
+.avatar-small img {
+    max-width: 90%;
+    max-height: 90%;
+    position: absolute;
+    border-radius: 50%;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%,5%)!important;
+    object-fit: contain;
+}
+
+.avatar-med {
+    width: 50px;
+    height: 50px;
+    
+    
+    border-radius: 50%;
+    position: relative;
+}
+
+.avatar-med img {
+    max-width: 90%;
+    max-height: 90%;
+    position: absolute;
+    border-radius: 50%;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%,5%)!important;
+    object-fit: contain;
+}
+
+.avatar-img-view-mode {
+    max-width: 95%;
+    max-height: 95%;
+    transform: translate(2.5%,2.5%)!important;
+}
+.avatar-online {
+    background: rgb(45,253,93);
+    background: linear-gradient(0deg, rgba(45,253,93,1) 0%, rgb(161, 229, 250) 50%, rgba(45,253,202,1) 100%);
+}
+
+.avatar-offline {
+    background: rgb(253,45,45);
+    background: linear-gradient(0deg, rgba(253,45,45,1) 0%, rgb(245, 231, 103) 50%, rgba(253,45,45,1) 100%);
+}
+
+
+
+.avatar-text {
+    margin-left: 0px;
+    /*padding: 0px !important;*/
+}
+
+
+.side-collapse {
+    position: relative ;
+}
+
+.side-collapse-btn {
+    position: absolute ;
+    right: 0%;
+    top: 50%;
+}
+
+.side-collapse-btn a{
+    color: rgb(54, 54, 65);
+    font-weight:lighter;
+}
+
+.side-collapse-btn a:hover{
+    color: rgb(12, 12, 141);
+    font-weight: bolder;
+}
+
+.alert-index {
+    z-index: 5;
+}
+
+.bi-send-fill {
+    height: 38px !important;
+    width: 30px !important;
+}

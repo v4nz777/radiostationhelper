@@ -1,0 +1,88 @@
+{% load static %}
+
+<!-- Modal -->
+<div class="modal fade" id="profile{{person}}Modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content text-start">
+        <div class="modal-header">
+          
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row justify-content-start">
+              <div class="col-3 me-0">
+                {% if person.is_logged %}
+                  <div class="card-avatar mb-3 avatar-online">
+                {% else %}
+                  <div class="card-avatar mb-3 avatar-offline">
+                {% endif %}
+                    <img src="{% static 'mainapp/media/avatar.jpg' %}" class="avatar-img avatar-img-view-mode" alt="...">
+                  </div>
+                  
+                  
+            </div>
+            <div class="col-8 ms-3">
+                  
+                <div>
+                    <h6 class="mb-0">{% include 'mainapp/svg/building.svg' %}Designations</h6>    
+                    <hr class="mt-1">              
+                </div>
+                {% for department in person.designation.all %}
+                <span class="badge bg-secondary">{{department.title.title}}</span>
+                {% endfor %}
+                
+            </div>
+          </div>
+          
+          <h5 class="modal-title">{{person.first_name.title}} {{person.last_name.title}}</h5>
+          <h6 class="text-secondary mt-0">
+            {% if person.position == None %}
+              Unassigned
+            {% else %}
+            {{person.position.title.title}}
+            {% endif %}
+            
+            
+            <span class="badge bg-outline change-button">
+              <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePositionfor-{{person}}">
+                Change
+              </a>
+            </span>
+          </h6>
+            <div class="collapse input-group" id="collapsePositionfor-{{person}}">
+              
+                <input class="form-control" list="positionlistOptions" id="positionsDataList-{{person}}" placeholder="Choose Position or Add New...">
+                <datalist id="positionlistOptions">
+                  {% for position in positions %}
+                    <option value={{position.title.title}}>
+                  {% endfor %}
+                </datalist> 
+                <a type="button" class="input-group-text" id="positionsDataListBTNfor-{{person}}" onclick="set_or_create_Position('{{person}}')">{% include 'mainapp/svg/person-check-fill.svg' %}</a>
+            </div>
+          <div class="card mt-3">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item text-start"><span>{% include 'mainapp/svg/fingerprint.svg' %}</span>&nbsp;&nbsp;<span class='fst-italic' id="profileUser-{{person}}">{{person}}</span></li>
+            {% if person.email %}
+            <li class="list-group-item text-start" id="viewProfileEmail"><span>{% include 'mainapp/svg/envelope-fill.svg' %}</span>&nbsp;&nbsp;<span class='fst-italic'>{{person.email}}</span></li>
+            {% endif %}
+            {% if person.mobile %}
+            <li class="list-group-item text-start" id="viewProfileMobile"><span>{% include 'mainapp/svg/phone-fill.svg' %}</span>&nbsp;&nbsp;<span class='fst-italic'>{{person.mobile}}</span></li>
+            {% endif %}
+            {% if person.telephone %}
+            <li class="list-group-item text-start" id="viewProfileTele"><span>{% include 'mainapp/svg/telephone-fill.svg' %}</span>&nbsp;&nbsp;<span class='fst-italic'>{{person.telephone}}</span></li>
+            {% endif %}
+            {% if person.facebook %}
+            <li class="list-group-item text-start" id="viewProfileFacebook"><span>{% include 'mainapp/svg/facebook.svg' %}</span>&nbsp;&nbsp;<span class='fst-italic'>{{person.facebook}}</span></li>
+            {% endif %}
+            {% if person.address %}
+            <li class="list-group-item text-start" id="viewProfileAdd"><span>{% include 'mainapp/svg/house-fill.svg' %}</span>&nbsp;&nbsp;<span class='fst-italic'>{{person.address.title}}</span></li>
+            {% endif %}
+          </ul>
+          </div>  
+        
+          <!--button type="button" class="btn btn-primary">Save changes</button-->
+        </div>
+      </div>
+    </div>
+  
+</div>

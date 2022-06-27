@@ -1,0 +1,134 @@
+<!-- Modal -->
+
+<div class="modal fade" id="ad-{{ad.code}}-Modal" tabindex="-1" aria-labelledby="ad-{{ad.code}}-ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <div class="modal-body">
+            <h5 class="modal-title fw-bolder text-center mb-4" id="adModal" >#CONTRACT {{ad.code}}</h5>
+            <!--BODY-->
+            <div class="row" >
+                <div class="col card shadow mx-3 pb-3">
+                    <div class="card-header text-center"><h5 class="fw-bold">Contract Details</h5></div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item fw-bold">
+                                {% include 'mainapp/svg/file-earmark-play.svg' %}
+                                Advertisement:<br>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="fw-normal">
+                                    <small>{{ad.title.title}}</small>
+                                </span>
+                            </li>
+                            <li class="list-group-item fw-bold">
+                                {% include 'mainapp/svg/file-earmark-binary.svg' %}
+                                Contract:<br>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="fw-normal">
+                                    <small>{{ad.code}}</small>
+                                </span>
+                            </li>
+                            <li class="list-group-item fw-bold">
+                                {% include 'mainapp/svg/file-earmark-person.svg' %}
+                                Advertiser:<br>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="fw-normal">
+                                    <small>{{ad.customer.company.title}}</small>
+                                </span>
+                            </li>
+                            <li class="list-group-item fw-bold">
+                                {% include 'mainapp/svg/file-earmark-person.svg' %}
+                                Address:<br>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="fw-normal">
+                                    <small>{{ad.customer_address.title}}</small>
+                                </span>
+                            </li>
+                            <li class="list-group-item fw-bold">
+                                {% include 'mainapp/svg/file-earmark-person-fill.svg' %}
+                                Account Executive:<br>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="fw-normal">
+                                    <small>{{ad.account_executive.first_name.title}} {{ad.account_executive.last_name.title}}</small>
+                                </span>
+                            </li>
+                            <li class="list-group-item fw-bold">
+                                {% include 'mainapp/svg/coin.svg' %}
+                                Amount:<br>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="fw-normal">
+                                    <small>₱{{ad.amount}}/month</small>
+                                </span>
+                            </li>
+                            <li class="list-group-item fw-bold">
+                                {% include 'mainapp/svg/file-earmark-break.svg' %}
+                                Broadcast Duration:<br>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="fw-normal">
+                                    <small>{{ad.broadcast_start|date:'M Y'}} - {{ad.broadcast_end|date:'M Y'}}</small>
+                                </span>
+                            </li>
+                            <li class="list-group-item fw-bold">
+                                {% include 'mainapp/svg/file-earmark-music.svg' %}
+                                Material Duration:<br>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="fw-normal">
+                                    <small>{{ad.material_duration}} seconds</small>
+                                </span>
+                            </li>
+                            <li class="list-group-item fw-bold">
+                                {% include 'mainapp/svg/file-earmark-spreadsheet.svg' %}
+                                Material Spots:<br>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="fw-normal">
+                                    <small>{{ad.spots_per_day}}x/day</small>
+                                </span>
+                            </li>
+                            
+                            <li class="list-group-item fw-bold">
+                                {% include 'mainapp/svg/file-earmark-spreadsheet.svg' %}
+                                Tagline Spots:<br>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="fw-normal">
+                                    <small>{{ad.sponsorship_taglines}}x/day</small>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col card shadow mx-3">
+                    <div class="card-header text-center">
+                        <h5 class="fw-bold">Invoices
+                            
+                            <a data-bs-target="#invoiceForContract-{{ad.code}}-Modal" data-bs-toggle="modal" data-bs-dismiss="modal" href="#">
+                                {% include 'mainapp/svg/plus-square-dotted.svg' %}
+                            </a>
+                        </h5>    
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+
+                            {% for invoice in invoices %}
+                                {% if invoice.from_contract == ad.code %}
+                                    {% if invoice.paid %}
+                                    <li class="list-group-item fw-bold text-success">
+                                    {% else %}
+                                    <li class="list-group-item fw-bold text-danger">
+                                    {% endif %}
+                                        {% include 'mainapp/svg/receipt.svg' %}
+                                        {{invoice.invoice_no}}
+                                        <span class="fw-normal">
+                                            <small>{{invoice.applicable_month_from|date:"M d,Y"}}-{{invoice.applicable_month_to|date:"M d,Y"}}</small>
+                                        </span>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                          
+                        </ul>
+                    </div>
+                </div>  
+            </div>    
+            <!--BODY-->
+        </div>
+        <div class="modal-footer">
+          <!--button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button-->
+          <!--button class="btn btn-secondary" data-bs-target="#invoiceForContract-{{ad.code}}-Modal" data-bs-toggle="modal" data-bs-dismiss="modal">Create Invoice</button-->
+          <!--button type="button" class="btn btn-primary">Save changes</button-->
+        </div>
+      </div>
+    </div>
+  </div>

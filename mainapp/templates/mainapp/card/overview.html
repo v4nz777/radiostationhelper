@@ -1,0 +1,109 @@
+{% extends 'mainapp/main_card.html' %}
+{% load static %}
+
+
+<!--HEADER-->
+{% block active_overview %}
+active
+{% endblock active_overview %}
+
+
+<!--BODY-->
+{% block card_body %}
+
+    <ul class="list-group" style='width:30rem'>
+        <!--oo00oo-->
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bolder text-start">
+                    <!--COLLAPSE BTN-->
+                    <a class="text-decoration-none" data-bs-toggle="collapse" href="#collapsePeople" id="collapsePeopleBTN">
+                        {% include 'mainapp/svg/caret-right.svg' %}
+                    </a>
+                    People
+                    </div>
+                    
+                    <!--COLLAPSE CONTENT-->
+                    
+                    <div class="collapse" id="collapsePeople">
+                    <hr>
+                        {% for person in people %}
+                        <div class="row mb-3"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                {% if person.is_logged %}
+                                    <div class="col-2 avatar-small avatar-online">
+                                        <img src={% static 'mainapp/media/avatar-small.png' %} alt="">
+                                    </div>
+                                {% else %}
+                                    <div class="col-2 avatar-small avatar-offline">
+                                        <img src={% static 'mainapp/media/avatar-small.png' %} alt="">
+                                    </div>
+                                {% endif %}
+                                
+                                <div class="col text-start avatar-text fw-normal" style='width:25rem'>
+                                    <a href="#" type="button" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#profile{{person}}Modal">
+                                        {{person.first_name.title}} {{person.last_name.title}} 
+                                    </a>
+                                    {% include 'mainapp/modals/view_profile.html' %}
+                                    <small class="text-muted">
+                        
+                                        {{person.position.title.title}}
+
+                                    </small>
+                                </div>
+                                
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <!--COLLAPSE END-->
+                </div>
+                <span class="badge bg-primary rounded-pill">{{people.count}}</span>
+            </li>
+        
+        <!--oo00oo-->
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bolder text-start">
+                        <!--COLLAPSE BTN-->
+                        <a class="text-decoration-none" data-bs-toggle="collapse" href="#collapseDepartment" id="collapseDepartmentBTN">
+                            {% include 'mainapp/svg/caret-right.svg' %}
+                        </a>
+                        Departments&nbsp;&nbsp;&nbsp;&nbsp;
+                        <!--ADD BTN-->
+                        <span>
+                        {% if request.user.position.title == 'manager' %}
+                            <a style="width:16rem" class="text-decoration-none" type="button" data-bs-toggle="modal" data-bs-target="#addDeptModal">
+                                {% include 'mainapp/svg/plus-square-dotted.svg' %}
+                            </a>
+                            <!--CREATE NEW DEPARTMENT-->
+                            {% include 'mainapp/admin/add_department.html' %}
+                        {% else %}
+                            <a style="width:16rem;color:gray" class="text-decoration-none" disabled data-bs-toggle="tooltip" data-bs-placement="right" title="Only Managers Can Add Departments">
+                                {% include 'mainapp/svg/plus-square-dotted.svg' %}
+                            </a>
+                        {% endif %}
+                        </span>
+                       
+                    </div>
+                    
+                    <!--COLLAPSE CONTENT-->
+                    
+                    <div class="collapse" id="collapseDepartment">
+                    <hr>
+                        {% for department in departments %}
+                        <div class="row mx-3 mb-2">                                                                
+                            <a class="fw-bold text-start text-decoration-none" href={% url 'department' department.title.lower %}>{{department.title.title}}</a>
+                            <small class="text-secondary text-start">{{department.description}}</small>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <!--COLLAPSE END-->
+                </div>
+                <span class="badge bg-primary rounded-pill">{{departments.count}}</span>
+            </li>
+        <!--oo00oo-->
+    </ul>
+    
+    
+{% endblock card_body %}

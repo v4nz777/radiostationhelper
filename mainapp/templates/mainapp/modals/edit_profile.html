@@ -1,0 +1,69 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action={% url 'save_profile' %} method="post" id="editProfileForm">
+              {% csrf_token %}
+            <div class="input-group mb-3">
+                <span class="input-group-text">{% include 'mainapp/svg/envelope-fill.svg' %}</span>
+                <input name="email" type="text" class="form-control" placeholder="example@email.com" id="userEmail" value={{request.user.email}} >
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">{% include 'mainapp/svg/phone-fill.svg' %}</span>
+                <input name="mobile" type="text" class="form-control" placeholder="Mobile Number" id="userMobile" value={{request.user.mobile}} >
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">{% include 'mainapp/svg/telephone-fill.svg' %}</span>
+                <input name="telephone" type="text" class="form-control" placeholder="Telephone Number" id="userTelephone" value={{request.user.telephone}} >
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">{% include 'mainapp/svg/facebook.svg' %}</span>
+                <input name="facebook" type="text" class="form-control" placeholder="Facebook ID" id="userFacebook" value={{request.user.facebook}} >
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">{% include 'mainapp/svg/house-fill.svg' %}</span>
+                <input name="address" type="text" class="form-control" placeholder="Street, Barangay, City, Province" id="userAddress" value={{request.user.address.title}} >
+            </div>
+            <div class="input-group mb-3">
+                <span class="text-decoration-none text-success" id="collapsePasswordStatus">
+                    {% include 'mainapp/svg/shield-lock.svg' %}                
+                </span>
+                &nbsp;&nbsp;&nbsp;  
+                <a data-bs-toggle="collapse" href="#collapsePassword" role="button" class="text-decoration-none fw-bold text-secondary">
+                    Change Password?
+                </a>
+                <input class="d-none" type="checkbox" name="change_pass_active" id="collapsePasswordInput">                     
+            </div>
+            
+            
+            <div class="collapse" id="collapsePassword">
+                <div class="card card-body">
+                    <div class="input-group mb-3">
+                        <span id="oldKey" class="input-group-text">{% include 'mainapp/svg/key-fill.svg' %}</span>
+                        <input name="old_password" type="password" class="form-control" placeholder="Old Password" id="userOldPass">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span id="newKey" class="input-group-text">{% include 'mainapp/svg/key.svg' %}</span>
+                        <input name="new_password" type="password" class="form-control" placeholder="New Password" id="userNewPass">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span id="confirmationKey" class="input-group-text">{% include 'mainapp/svg/key.svg' %}</span>
+                        <input name="confirmation" type="password" class="form-control" placeholder="Confirm New Password" id="userConfirmationPass">
+                    </div>
+                </div>
+                <div id="profileAlertPlaceholder"></div>
+            </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="submitEdited">Save changes</button></form>
+        </div>
+      </div>
+    </div>
+  </div>

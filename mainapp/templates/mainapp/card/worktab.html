@@ -1,0 +1,82 @@
+{% extends 'mainapp/main_card.html' %}
+{% load static %}
+
+
+
+<!--HEADER-->
+{% block active_worktab %}
+active
+{% endblock active_worktab %}
+
+
+<!--BODY-->
+{% block card_body %}
+
+<!--TRANSMITTER LOG APP-->
+    <div class="card shadow mx-3 my-3">
+        <div class="card-body">
+        <h5 class="card-title">Transmitter Log</h5>
+        <p class="card-text">Transmitter's Daily Log</p>
+        <!-- Button trigger modal -->
+        <a type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#transmitterLogModal" href="#" class="btn btn-primary">Start Logging</a>
+        </div>
+    </div>
+    {% include 'transmitter_log/transmitter_log.html' %}
+<!--TRANSMITTER LOG APP-->
+
+
+
+<!-- POSITIONS APP-->
+<div class="card shadow mx-3 my-3">
+    <div class="card-body">
+    <h5 class="card-title">Positions</h5>
+    <p class="card-text">Edit details for made positions of your company...</p>
+    <!-- Button trigger modal -->
+    <a type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addPositionModal" href="#" class="btn btn-primary">New Position</a>
+    <a id="collapsePositionsBTN" class="btn btn-outline-secondary" data-bs-toggle="collapse" href="#collapsePositions" role="button" aria-expanded="false" aria-controls="collapsePositions">
+        {% include 'mainapp/svg/eye-slash-fill.svg' %}
+    </a>
+    {% include 'office/positions.html' %}
+    
+    </div>
+</div>
+{% include 'office/new_position.html' %}
+<!-- POSITIONS APP-->
+
+<!-- ADS APP-->
+    <div class="card shadow mx-3 my-3">
+        <div class="card-body">
+        <h5 class="card-title">Advertisements</h5>
+        <p class="card-text">All running ads</p>
+        <!-- Button trigger modal -->
+        <a type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addNewAdsModal" href="#" class="btn btn-primary">New Contract</a>
+        <a id="collapseAdsListBTN" class="btn btn-outline-secondary" data-bs-toggle="collapse" href="#collapseAdsList" role="button" aria-expanded="false" aria-controls="collapseAdsList">
+            {% include 'mainapp/svg/eye-slash-fill.svg' %}
+        </a>
+        {% include 'office/ads.html' %}
+        
+        </div>
+    </div>
+    {% include 'office/new_ads.html' %}
+<!-- ADS APP-->
+
+
+<!-- PAYMENT APP-->
+<div class="card shadow mx-3 my-3">
+    <div class="card-body">
+    <h5 class="card-title">Payments</h5>
+    <p class="card-text">All running ads</p>
+    <!-- Button trigger modal -->
+    <a type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addNewPaymentModal" href="#" class="btn btn-primary">Input New Payment</a>
+    <a id="collapseCollectionsListBTN" class="btn btn-outline-secondary" data-bs-toggle="collapse" href="#collapseCollectionsList" role="button" aria-expanded="false" aria-controls="collapseCollectionsList">
+        {% include 'mainapp/svg/piggy-bank.svg' %}
+    </a>
+    {% include 'office/collections.html' %}
+    
+    </div>
+
+</div>
+{% include 'office/new_payment.html' %}
+<!-- PAYMENT APP-->
+
+{% endblock card_body %}

@@ -1,0 +1,36 @@
+<div class="collapse mt-4" id="collapseAdsList">
+    <div class="card card-body">
+        <table class="table table-hover text-start">
+            <thead>
+                <tr>
+                    <th scope="col">Contract#</th>
+                    <th scope="col">Advertiser</th>
+                    <th scope="col">Advertisement</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">Spots/Day</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ad in ads %}
+                <tr class="">
+                    <th scope="col">
+                        <a target="_blank" class="text-decoration-none" href={% url 'contract' ad.code%}>
+                            {{ad.code}}
+                        </a>
+                        
+                        {% comment %}
+                        <a type="button" data-bs-toggle="modal" data-bs-target="#ad-{{ad.code}}-Modal" class="text-decoration-none" href={% url 'contract' ad.code%}>
+                        {{ad.code}}</a>
+                         {% include 'office/ad.html' %}
+                        {% include 'office/new_invoice.html' %} {% endcomment %}
+                    </th>
+                    <td scope="col">{{ad.customer.company.title}}</td>
+                    <td scope="col">{{ad.title.title}}</td>        
+                    <td scope="col">{{ad.material_duration}} sec</td>
+                    <td scope="col">{{ad.spots_per_day}}x/day</td>  
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+  </div>
